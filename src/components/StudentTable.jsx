@@ -29,6 +29,7 @@ export default function StudentTable({ students, setStudents }) {
       await updateDoc(studentDoc, {
         name: currentStudent.name,
         age: currentStudent.age,
+        rollno: currentStudent.rollno
       });
 
       setStudents((students) =>
