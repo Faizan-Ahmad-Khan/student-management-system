@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
-import CreatStudent from './components/CreatStudent';
+import CreateStudent from './components/CreateStudent';
 import StudentList from './components/StudentList';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from './FirebaseConfig';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function App() {
   const [students, setStudents] = useState([]);
@@ -23,8 +24,7 @@ function App() {
     } catch (error) {
       console.log(error);
     } 
-      setLoader(false); 
-
+    setLoader(false);
   };
 
   useEffect(() => {
@@ -34,8 +34,8 @@ function App() {
   return (
     <div className='app-container'>
       <h1 className='app-title'>Student Management System</h1>
-      <CreatStudent getStudents={getStudents}  />
-      {loader ? <p>Loading...</p> : <StudentList students={students} setStudents={setStudents}  />}
+      <CreateStudent getStudents={getStudents}  />
+      {loader ? <CircularProgress /> : <StudentList students={students} setStudents={setStudents}  />}
     </div>
   );
 }
